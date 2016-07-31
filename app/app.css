@@ -23,14 +23,12 @@ body{
 .nav a:hover{
   color: #F1B81E !important;
 }
-
+.form-control{
+  margin-bottom: 5px !important;
+}
 .showProducts{
 	cursor: pointer;
 	font-size: 10px;
-}
-
-.shopText{
-	cursor:pointer;
 }
 
 .shopPanel{
@@ -40,4 +38,25 @@ body{
 
 .addShopForm{
 	margin-bottom: 20px;
+}
+
+.editShop{
+	margin-left: 10px;
+  width: 30%;
+}
+
+.shopText, .editBtn, .removeBtn, .okBtn{
+  cursor: pointer
+}
+
+.editBtn{
+  color: #404DF7;
+}
+
+.removeBtn{
+  color: #FA3434;
+}
+
+.okBtn{
+  color: #50F13B;
 }

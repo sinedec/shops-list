@@ -29,7 +29,7 @@ angular.
           address: 'г. Минск, ул. Логойский тракт 37',
           working: 'круглосуточно',
           showProducts: false,
-          editable: false,
+          editable: true,
           products: [
             { 
               name: 'Syal',
@@ -98,6 +98,19 @@ angular.
           newShop.name = "";
           newShop.address = "";
           newShop.working = "";
+        }
+      };
+      $scope.rewriteShop = function(shop,deleteShop) {
+        for (var i=0; i < $scope.shops.length; i++) {
+          if($scope.shops[i].number === shop.number) {
+            if(deleteShop == true) {
+              $scope.shops[i].editable = !$scope.shops[i].editable;
+              break;
+            } else {
+              $scope.shops.splice(i,1);
+              break;
+            } 
+          }
         }
       };
 

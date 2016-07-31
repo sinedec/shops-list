@@ -1,43 +1,56 @@
 
 	<div class="input-group add-task">
 		<div class="row addShopForm">
-			<div class="col col-sm-3">
+			<div class="col col-sm-3 col-xs-6">
 				<input type="text" class="form-control" ng-model="newShop.name" placeholder="Название">
 			</div>
-			<div class="col col-sm-3">
+			<div class="col col-sm-3 col-xs-6">
 				<input type="text" class="form-control" ng-model="newShop.address" placeholder="Адрес">
 			</div>
-          	<div class="col col-sm-3">
+          	<div class="col col-sm-3 col-xs-6">
           		<input type="text" class="form-control" ng-model="newShop.working" placeholder="Время работы">
           	</div>
-          	<div class="col col-sm-3">
+          	<div class="col col-sm-3 col-xs-6">
           		<span class="input-group-btn">
-		            <button class="btn btn-default" ng-click="add(newShop)">Добавить магазин</button>
+		            <button class="btn btn-default" ng-click="add(newShop)">Add Shop</button>
 		        </span>
           	</div>
-      </div>
-    </div>
+      </div> <!-- /.row -->
+    </div><!--  /.input-group.add-task -->
 	<div class="panel panel-default">
 	  <div ng-repeat="shop in shops">
-	  	<div class="shopPanel">
-		    <div class="row panel-heading">
-		    	<div class="col col-xs-11 shopText" ng-click="shop.showProducts = !shop.showProducts">
-		    		<div class="panel-title"><span>{{shop.number}}.</span> {{shop.name + ", адрес: " + shop.address + ", время работы: " + shop.working}}</div>
-		      	</div>
-		      	<div class="col col-xs-1"><span class="glyphicon glyphicon-edit"></span></div>
-	      	</div>
-	    </div>
-		<div ng-show="shop.showProducts" class="table-responsive">
-			<table class="table table-striped">
-				<tr>
-					<th>Название товара</th>
-					<th>Описание</th>
-				</tr>
-				<tr ng-repeat="product in shop.products">
-					<td>{{product.name}}</td>
-					<td>{{product.description}}</td>
-				</tr>
-			</table>
+	  	<div ng-hide="shop.editable">
+		  	<div class="shopPanel">
+			    <div class="row panel-heading">
+			    	<div class="col col-xs-11 shopText" ng-click="shop.showProducts = !shop.showProducts">
+			    		<div class="panel-title"><span>{{shop.number}}.</span> {{shop.name + ", адрес: " + shop.address + ", время работы: " + shop.working}}</div>
+			      	</div>
+			      	<div class="col col-xs-1"><span class="glyphicon glyphicon-edit editBtn" ng-click="shop.editable=!shop.editable"></span></div>
+		      	</div><!-- /.row -->
+		    </div><!-- /.shopPanel -->
+			<div ng-show="shop.showProducts" class="table-responsive">
+				<table class="table table-striped">
+					<tr>
+						<th>Название товара</th>
+						<th>Описание</th>
+					</tr>
+					<tr ng-repeat="product in shop.products">
+						<td>{{product.name}}</td>
+						<td>{{product.description}}</td>
+					</tr>
+				</table>
+			</div><!-- /.table-responsive -->
+		</div><!-- /ng-hide="shop.editable" -->
+		<div ng-show="shop.editable">
+			<div class="shopPanel">
+			    <div class="row panel-heading">
+			    	<div class="col col-xs-10 shopText">
+			    		<div class="panel-title"><span>{{shop.number}}.</span><input class="editShop" type="text" ng-model="shop.name" placeholder="Название"><input class="editShop" type="text" ng-model="shop.address" placeholder="Адрес"><input class="editShop" type="text" ng-model="shop.working" placeholder="Время работы"></div>
+			      	</div>
+			      	<div class="col col-xs-1"><span class="glyphicon glyphicon-remove removeBtn" ng-click="rewriteShop(shop,false)"></span></div>
+			      	<div class="col col-xs-1"><span class="glyphicon glyphicon-ok okBtn" ng-click="rewriteShop(shop,true)"></span></div>
+		      	</div><!-- /.row -->
+		    </div><!-- /.shopPanel -->
 		</div>
-	  </div>
-	</div>
+	  </div><!-- /ng-repeat="shop in shops" -->
+	</div><!-- /.panel -->
