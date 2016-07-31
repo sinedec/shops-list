@@ -81,6 +81,7 @@ angular.
           shop.working = newShop.working;
           shop.showProducts = false;
           shop.editable = false;
+          shop.products = [];
           shop.number = findMaxNumber($scope.shops)+1;
           $scope.shops.push(shop);
           newShop.name = "";
