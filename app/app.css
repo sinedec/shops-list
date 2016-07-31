@@ -1,0 +1,43 @@
+body{
+  padding-top: 70px;
+  margin-bottom: 30px;
+  background-image: url(img/bg.jpg);
+}
+
+/*Navigation bar*/
+
+.navbar{
+  background-color: #6E6F6F;
+  border-bottom: 1px solid #ABABAB;
+}
+.icon-bar{
+  background-color: #FFF;
+}
+
+.navbar-brand{
+  color: #FFF !important;
+}
+.nav a{
+  color: #FFF !important;
+}
+.nav a:hover{
+  color: #F1B81E !important;
+}
+
+.showProducts{
+	cursor: pointer;
+	font-size: 10px;
+}
+
+.shopText{
+	cursor:pointer;
+}
+
+.shopPanel{
+	background-color: #E1E1E1;
+	border-bottom: 1px solid #A2A2A2;
+}
+
+.addShopForm{
+	margin-bottom: 20px;
+}

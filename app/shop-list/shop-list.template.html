@@ -1,0 +1,43 @@
+
+	<div class="input-group add-task">
+		<div class="row addShopForm">
+			<div class="col col-sm-3">
+				<input type="text" class="form-control" ng-model="newShop.name" placeholder="Название">
+			</div>
+			<div class="col col-sm-3">
+				<input type="text" class="form-control" ng-model="newShop.address" placeholder="Адрес">
+			</div>
+          	<div class="col col-sm-3">
+          		<input type="text" class="form-control" ng-model="newShop.working" placeholder="Время работы">
+          	</div>
+          	<div class="col col-sm-3">
+          		<span class="input-group-btn">
+		            <button class="btn btn-default" ng-click="add(newShop)">Добавить магазин</button>
+		        </span>
+          	</div>
+      </div>
+    </div>
+	<div class="panel panel-default">
+	  <div ng-repeat="shop in shops">
+	  	<div class="shopPanel">
+		    <div class="row panel-heading">
+		    	<div class="col col-xs-11 shopText" ng-click="shop.showProducts = !shop.showProducts">
+		    		<div class="panel-title"><span>{{shop.number}}.</span> {{shop.name + ", адрес: " + shop.address + ", время работы: " + shop.working}}</div>
+		      	</div>
+		      	<div class="col col-xs-1"><span class="glyphicon glyphicon-edit"></span></div>
+	      	</div>
+	    </div>
+		<div ng-show="shop.showProducts" class="table-responsive">
+			<table class="table table-striped">
+				<tr>
+					<th>Название товара</th>
+					<th>Описание</th>
+				</tr>
+				<tr ng-repeat="product in shop.products">
+					<td>{{product.name}}</td>
+					<td>{{product.description}}</td>
+				</tr>
+			</table>
+		</div>
+	  </div>
+	</div>
