@@ -9,18 +9,21 @@ angular.
           name: 'ТЦ RIGA',
           address: 'г. Минск, ул. Сурганова 50',
           working: '8:00-23:00',
-          showProducts: false,
+          showProducts: true,
           editable: false,
           products: [
             { 
               name: 'Golden Alps',
-              description: 'Шоколад с чем-то'
+              description: 'Шоколад с чем-то',
+              editable: false
             }, {
               name: 'Shoulders & Head',
-              description: 'Шампунь против волос.'
+              description: 'Шампунь против волос.',
+              editable: false
             }, {
               name: 'Daniel Jackson',
-              description: 'Шотландский самогон.'
+              description: 'Шотландский самогон.',
+              editable: false
             }
           ]
         }, {
@@ -33,13 +36,16 @@ angular.
           products: [
             { 
               name: 'Syal',
-              description: 'Картофельные чипсы'
+              description: 'Картофельные чипсы',
+              editable: false
             }, {
               name: 'Cola-Coca',
-              description: 'Средство от ржавчины.'
+              description: 'Средство от ржавчины.',
+              editable: false
             }, {
               name: 'GateCol',
-              description: 'Зубная паста.'
+              description: 'Зубная паста.',
+              editable: false
             }
           ]
         }, {
@@ -52,38 +58,20 @@ angular.
           products: [
             { 
               name: "M's&M",
-              description: 'Драже с шоколадом и орехом'
+              description: 'Драже с шоколадом и орехом',
+              editable: false
             }, {
               name: 'Pedigrie',
-              description: 'Корм для собак'
+              description: 'Корм для собак',
+              editable: false
             }, {
               name: 'Cola-Coca',
-              description: "Средство от ржавчины. Купили в BIGZZ'е"
+              description: "Средство от ржавчины. Купили в BIGZZ'е",
+              editable: false
             }
           ]
         }
       ];
-      $scope.products = [
-        { 
-          id: 1,
-          name: 'Golden Alps',
-          description: 'Шоколад с чем-то'
-        }, {
-          id: 2,
-          name: 'Shoulders & Head',
-          description: 'Шампунь против волос.'
-        }, {
-          id: 3,
-          name: 'Daniel Jackson',
-          description: 'Шотландский самогон.'
-        }
-      ];
-
-      $scope.shopProducts = function () {
-        return $scope.products.filter(function (product) {
-          return $scope.shops['products'].indexOf(product.id) !== -1;
-        });
-      };
 
       $scope.add = function(newShop) {
         if (newShop.name != ""){
@@ -100,10 +88,10 @@ angular.
           newShop.working = "";
         }
       };
-      $scope.rewriteShop = function(shop,deleteShop) {
+      $scope.rewriteShop = function(shop,editShop) {
         for (var i=0; i < $scope.shops.length; i++) {
           if($scope.shops[i].number === shop.number) {
-            if(deleteShop == true) {
+            if(editShop == true) {
               $scope.shops[i].editable = !$scope.shops[i].editable;
               break;
             } else {
@@ -124,5 +112,35 @@ angular.
         }
         return result;
       }
+
+      $scope.addProduct = function(newProduct,shop){
+        if (newProduct.name != ""){
+          var product = {};
+          product.name = newProduct.name;
+          product.description = newProduct.description;
+          product.editable = false;
+          shop.products.push(product);
+          newProduct.name = "";
+          newProduct.description = "";
+        }
+      }
+
+      $scope.rewriteProduct = function(shop,product,editProduct) {
+        for (var i=0; i < $scope.shops.length; i++) {
+          if($scope.shops[i].number === shop.number) {
+            for (var j=0; j < $scope.shops[i].products.length; j++) {
+              if($scope.shops[i].products[j].name === product.name){
+                if(editProduct == true) {
+                  $scope.shops[i].products[j].editable = !$scope.shops[i].products[j].editable;
+                  break;
+                } else {
+                  $scope.shops[i].products.splice(j,1);
+                  break;
+                } 
+              }
+            }
+          }
+        }
+      };
     }
   });

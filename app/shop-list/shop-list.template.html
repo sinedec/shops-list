@@ -12,7 +12,7 @@
           	</div>
           	<div class="col col-sm-3 col-xs-6">
           		<span class="input-group-btn">
-		            <button class="btn btn-default" ng-click="add(newShop)">Add Shop</button>
+		            <button class="btn btn-success" ng-click="add(newShop)">Add Shop</button>
 		        </span>
           	</div>
       </div> <!-- /.row -->
@@ -35,10 +35,18 @@
 						<th>Описание</th>
 					</tr>
 					<tr ng-repeat="product in shop.products">
-						<td>{{product.name}}</td>
-						<td>{{product.description}}</td>
+							<td ng-hide="product.editable">{{product.name}}</td>
+							<td ng-hide="product.editable">{{product.description}}</td>
+							<td ng-hide="product.editable"><span class="glyphicon glyphicon-trash removeBtn" ng-click="rewriteProduct(shop,product,false)"></span></td>
+							<td ng-hide="product.editable"><span class="glyphicon glyphicon-pencil editBtn" ng-click="product.editable=!product.editable"></span></td>
+
+							<td ng-show="product.editable"><input class="editProduct" type="text" ng-model="product.name" placeholder="Название"></td>
+							<td ng-show="product.editable"><input class="editProduct" type="text" ng-model="product.description" placeholder="Описание"></td>
+							<td ng-show="product.editable"><span class="glyphicon glyphicon-trash removeBtn" ng-click="rewriteProduct(shop,product,false)"></span></td>
+							<td ng-show="product.editable"><span class="glyphicon glyphicon-ok okBtn" ng-click="rewriteProduct(shop,product,true)"></span></td>
 					</tr>
 				</table>
+				<div class="addProduct">Add new product: <input type="text" class="productInput" ng-model="newProduct.name" placeholder="Название"><input type="text" class="productInput" ng-model="newProduct.description" placeholder="Описание"> <button class="btn btn-default" ng-click="addProduct(newProduct,shop)">Add Product</button></div>
 			</div><!-- /.table-responsive -->
 		</div><!-- /ng-hide="shop.editable" -->
 		<div ng-show="shop.editable">
@@ -47,10 +55,10 @@
 			    	<div class="col col-xs-10 shopText">
 			    		<div class="panel-title"><span>{{shop.number}}.</span><input class="editShop" type="text" ng-model="shop.name" placeholder="Название"><input class="editShop" type="text" ng-model="shop.address" placeholder="Адрес"><input class="editShop" type="text" ng-model="shop.working" placeholder="Время работы"></div>
 			      	</div>
-			      	<div class="col col-xs-1"><span class="glyphicon glyphicon-remove removeBtn" ng-click="rewriteShop(shop,false)"></span></div>
+			      	<div class="col col-xs-1"><span class="glyphicon glyphicon-trash removeBtn" ng-click="rewriteShop(shop,false)"></span></div>
 			      	<div class="col col-xs-1"><span class="glyphicon glyphicon-ok okBtn" ng-click="rewriteShop(shop,true)"></span></div>
 		      	</div><!-- /.row -->
 		    </div><!-- /.shopPanel -->
-		</div>
+		</div><!-- /ng-show="shop.editable" -->
 	  </div><!-- /ng-repeat="shop in shops" -->
 	</div><!-- /.panel -->

@@ -60,3 +60,17 @@ body{
 .okBtn{
   color: #50F13B;
 }
+
+.productInput{
+  margin-left:10px;
+  margin-bottom: 5px;
+}
+
+.addProduct{
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.margin-auto {
+  margin: 0 auto;
+}
