@@ -1,4 +1,5 @@
 # Shops list application
+You can watch the Demo [Here](http://vasiliev.by/shops-list/)
 ### Installing Dependencies
 
 You can install dependencies by running:
